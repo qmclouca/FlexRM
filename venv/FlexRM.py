@@ -2,7 +2,7 @@ from symbeam import *
 # L = lenght, E = Young Modulus, I = Inertia Modulus
 from sympy.abc import L, E, I
 import sympy
-import matplotlib
+import matplotlib.pyplot as plt
 
 
 def input_beam_data():
@@ -116,9 +116,10 @@ def example_of_adding_loads():
     applied by calling the add_distributed_load() method, which takes the starting
     and ending point of the distributed load and the associated expression.
     """
-    new_beam.add_point_load(3 * L / 4, -P)
-    new_beam.add_point_moment(L, M)
-    new_beam.add_distributed_load(0, L / 2, -q * x)
+    new_beam.add_point_load(3 * L / 4, -10)  #P = -10
+    new_beam.add_point_load(3 * L / 7, -20)
+    new_beam.add_point_moment(L, 10) #M = 10
+    new_beam.add_distributed_load(0, L / 2, -2 * 2) #q = -2 x= 2
 
 def example_of_solving():
     """
@@ -146,5 +147,5 @@ def example_of_solving():
     substitutions L=2, P=1000, q=5000 and M=1000.
     """
     new_beam.solve()
-    new_beam.plot(subs={'P': 1000, 'q': 5000, 'L': 2, 'M': 1000})
+    new_beam.plot(subs={'P': 1000, 'q': 5000, 'L': 5, 'M': 1000})
     plt.savefig("beam.pdf")
